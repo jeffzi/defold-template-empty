@@ -10,4 +10,28 @@ If you run into trouble, help is available in [our forum](https://forum.defold.c
 
 Happy Defolding!
 
----
+## Setup Pre-commit
+
+A framework for managing and maintaining [git pre-commit hooks](https://www.atlassian.com/git/tutorials/git-hooks).
+We use pre-commit to run linters on commit, push and in the CI.
+
+1. Install [pre-commit](https://pre-commit.com/#installation)
+2. Install [Nodejs](https://nodejs.org/en/) if not already installed.
+3. Install [commit-lint](https://commitlint.js.org/):
+
+```bash
+npm install -g @commitlint/cli @commitlint/config-conventional
+```
+
+3. Set up pre-commit, from repo's directory:
+
+```bash
+pre-commit install
+pre-commit install --hook-type commit-msg
+```
+
+4. Test running hooks:
+
+```bash
+pre-commit run -a
+```
