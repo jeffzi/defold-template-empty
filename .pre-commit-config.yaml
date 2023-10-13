@@ -1,20 +1,3 @@
-# See https://pre-commit.com
-
-exclude: >
-  (?x)(
-  Packages
-  |^ProjectSettings
-  |\.asset$
-  |\.csproj$
-  |\.git
-  |\.mat$
-  |\.md$
-  |\.meta$
-  |\.prefab$
-  |\.shadergraph$
-  |\.unity$
-  )
-
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
