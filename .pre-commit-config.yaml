@@ -1,0 +1,67 @@
+# See https://pre-commit.com
+
+exclude: >
+  (?x)(
+  Packages
+  |^ProjectSettings
+  |\.asset$
+  |\.csproj$
+  |\.git
+  |\.mat$
+  |\.md$
+  |\.meta$
+  |\.prefab$
+  |\.shadergraph$
+  |\.unity$
+  )
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-vcs-permalinks
+      - id: check-xml
+      - id: check-yaml
+      - id: detect-aws-credentials
+        args: [--allow-missing-credentials]
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+        args: ["--markdown-linebreak-ext=md,markdown"]
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.3
+    hooks:
+      - id: prettier
+
+  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+    rev: v9.5.0
+    hooks:
+      - id: commitlint
+        stages: [commit-msg]
+        additional_dependencies: ["@commitlint/config-conventional"]
+
+  - repo: https://github.com/JohnnyMorganz/StyLua
+    rev: v0.18.2
+    hooks:
+      - id: stylua-github
+        types: [file]
+        files: \.(lua|script|gui_script|render_script)$
+
+  - repo: local
+    hooks:
+      - id: luacheck
+        name: Luacheck
+        description: Lint Lua files using Luacheck.
+        entry: luacheck --
+        language: system
+        types: [file]
+        files: \.(lua|script|gui_script|render_script)$
